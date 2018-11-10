@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+</head>
+<body>
+
+	<div class="container">
+
+		<form th:action="@{/form}"  th:object="${cliente}" method="post" >
+		
+		<input type="hidden" th:field="*{id}" />
+
+		<h1 class="text-danger" th:text="${titulo}"></h1>
+			<hr style= "border-top: 1px solid red;" />
+			
+			
+			
+			<div class="form-group row">
+				<label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
+				<div class="col-sm-3">
+					<input type="text"  class="form-control" th:field="*{nombre}"
+						id="inputNombre" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"  th:errors="*{nombre}" ></small>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="inputApellido" class="col-sm-2 col-form-label">Apellido</label>
+				<div class="col-sm-3">
+					<input type="text"  class="form-control" th:field="*{apellido}"
+						id="inputApellido" />
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}"  th:errors="*{apellido}" ></small>
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="inputFecha" class="col-sm-2 col-form-label">Fecha</label>
+				<div class="col-sm-3" >
+					<input type="date" pattern="yyyy-MM-dd" id="inputFecha" th:field="*{fechaCreacion}"/>
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('fechaCreacion')}"  th:errors="*{fechaCreacion}" ></small>
+				</div>
+			</div>
+			
+			
+			<div class="form-group row">
+				
+				<div class="col-sm-3">
+					<input class="btn btn-primary" type="submit" value="Registrar" />
+				</div>
+			</div>
+
+		</form>
+	
+	</div>
+
+
+</body>
+</html>
