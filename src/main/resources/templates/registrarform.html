@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1" />
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+<head th:replace="layout/layout :: head">
 </head>
 <body>
 
+	<header th:replace="layout/layout :: header"></header>
+	<div style="height: 60px;">
+	</div>
 	<div class="container">
 
 		<form th:action="@{/form}"  th:object="${cliente}" method="post" >
@@ -56,6 +55,7 @@
 	
 	</div>
 
-
+	<footer th:replace="layout/layout :: footer">
+	</footer>
 </body>
 </html>
