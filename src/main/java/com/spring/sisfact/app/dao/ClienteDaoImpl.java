@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
 import com.spring.sisfact.app.entity.Cliente;
 
@@ -38,8 +40,6 @@ public class ClienteDaoImpl implements IClienteDao {
 		Cliente c = this.findOne(id);
 		em.remove(c);
 	}
-	
-	
-	
+
 
 }
