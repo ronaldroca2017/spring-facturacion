@@ -113,12 +113,12 @@ public class Factura {
 		this.facItem.add(factitem);
 	}
 	
-	public double granTotal() {
+	public double getGranTotal() {
 		
 		double suma = 0.0;
 		
 		for(int i=0; i<facItem.size() ; i++) {
-			suma += facItem.get(0).calcularImporte();
+			suma += facItem.get(i).calcularImporte();
 		}
 		
 		return suma;

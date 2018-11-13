@@ -103,4 +103,25 @@ public class ClienteController {
 		return "redirect:/listar";
 	}
 	
+	@RequestMapping(value="/ver/{id}" , method = RequestMethod.GET)
+	public String ver(@PathVariable(value = "id") Long id, Map<String, Object> mapObject) {
+		Cliente cliente = null;
+		
+		if(id>0) {
+			cliente = clienteService.findOne(id);
+			if(cliente==null) {
+			
+				return "redirect:/listar";
+			}
+		}else {
+			
+			return "redirect:/listar";
+		}
+		
+		mapObject.put("cliente", cliente);
+		mapObject.put("titulo", "Detalle de los datos y facturas del cliente");
+		
+		return "ver";
+	}
+	
 }

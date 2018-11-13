@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+	
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container padding-container">
+		<div class="card ">
+		<div class="card-header bg-info text-white" th:text="${titulo}"></div>
+		<div class="card-body">
+	<h4 class="card-title">
+		<a class="btn btn-primary" th:href="@{'/factura/crear/' + ${cliente.id}}" th:text = "'Crear Factura'"></a>
+	</h4>
+		<form th:action="@{/form}"  th:object="${cliente}" method="post" >
+				<div class="form-group row">
+				<label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
+				<div class="col-sm-3">
+					<input type="text"  class="form-control" th:field="*{nombre}"
+						id="inputNombre" readonly="readonly" />
+
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="inputApellido" class="col-sm-2 col-form-label">Apellido</label>
+				<div class="col-sm-3">
+					<input type="text"  class="form-control" th:field="*{apellido}"
+						id="inputApellido"  readonly="readonly" />
+
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="inputFecha" class="col-sm-2 col-form-label">Fecha</label>
+				<div class="col-sm-3" >
+					<input type="text" class="form-control" pattern="yyyy-MM-dd" id="inputFecha" th:field="*{fechaCreacion}" 
+					readonly="readonly"/>
+				
+				</div>
+			</div>
+
+		</form>
+		
+		<div th:if="${#lists.isEmpty(cliente.listaFactura)}" class="alert alert-info my-4" 
+			 th:text = "'No hay facturas asignadas para el cliente : ' + ${cliente.nombre} + ' ' + ${cliente.apellido} ">
+		
+		</div>
+			<table  th:if="${not #lists.isEmpty(cliente.listaFactura)}" class="table table-bordered  table-striped my-4">
+				<thead class="thead-inverse">
+					<tr>
+						<th>FOLIO</th>
+						<th>DESCRIPCION</th>
+						<th>OBSERVACION</th>
+						<th>FECHA FACT</th>
+						<th>TOTAL</th>
+
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="fact: ${cliente.listaFactura}">
+						<td th:text="${fact.folio}"></td>
+						<td th:text="${fact.descripcion}"></td>
+						<td th:text="${fact.observacion}"></td>
+						<td th:text="${fact.fechaFacturacion}"></td>
+						<td th:text="${fact.granTotal}"></td>
+						
+					</tr>
+
+				</tbody>
+
+			</table>
+			
+		
+		</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"> </footer>
+</body>
+</html>

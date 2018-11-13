@@ -29,5 +29,18 @@ INSERT INTO clientes (nombre, apellido, email, fecha_creacion) VALUES('Richard',
 
 INSERT INTO productos(nombre, precio, fecha_creacion) VALUES('Panasonic Pantalla LCD',4500,NOW());
 INSERT INTO productos(nombre, precio, fecha_creacion) VALUES('Sony Camara Digital',3500,NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES('Apple iPod shuffle', 1499990, NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES('Sony Notebook Z110', 37990, NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES('Hewlett Packard Multifuncional F2280', 69990, NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES('Bianchi Bicicleta Aro 26', 69990, NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES('Mica Comoda 5 Cajones', 299990, NOW());
 
+/* Creamos algunas facturas */
+INSERT INTO facturas (descripcion, observacion, cliente_id, fecha_fact) VALUES('Factura equipos de oficina', null, 1, NOW());
+INSERT INTO factura_item (cantidad, factura_id, producto_id) VALUES(1, 1, 1);
+INSERT INTO factura_item (cantidad, factura_id, producto_id) VALUES(2, 1, 4);
+INSERT INTO factura_item (cantidad, factura_id, producto_id) VALUES(1, 1, 5);
+INSERT INTO factura_item (cantidad, factura_id, producto_id) VALUES(1, 1, 7); 
 
+INSERT INTO facturas (descripcion, observacion, cliente_id, fecha_fact) VALUES('Factura Bicicleta', 'Alguna nota importante!', 1, NOW());
+INSERT INTO factura_item (cantidad, factura_id, producto_id) VALUES(3, 2, 6);
