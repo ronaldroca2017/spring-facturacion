@@ -1,6 +1,7 @@
 package com.spring.sisfact.app.controller;
 
-import java.util.Map;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,11 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.sisfact.app.entity.Cliente;
 import com.spring.sisfact.app.entity.Factura;
+import com.spring.sisfact.app.entity.Producto;
 import com.spring.sisfact.app.service.IClienteService;
 
 @Controller
@@ -33,10 +36,6 @@ public class FacturaController {
 		if(cliente!=null) {
 			Factura factura = new Factura();
 			factura.setCliente(cliente);
-			
-			/*model.put("titulo", "Crear Factura");
-			model.put("factura", factura);		*/
-			
 			model.addAttribute("titulo", "Crear Factura");
 			model.addAttribute("factura", factura);
 			model.addAttribute("nombre",  factura.getCliente().getNombre());
@@ -47,7 +46,14 @@ public class FacturaController {
 			return "redirect:/listar";
 		}
 		
-		
 		return "factura/form";
 	}
+	
+	
+	@GetMapping(value = "/cargar-productos/{term}", produces = {"application/json"})
+	public @ResponseBody List<Producto> cargarProductos(@PathVariable String term){
+		return clienteService.findByNombre(term);
+		
+	}
+
 }

@@ -9,15 +9,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.sisfact.app.dao.IClienteDao;
-import com.spring.sisfact.app.dao.IClienteDaoCrudRepository;
+import com.spring.sisfact.app.dao.IProductoDao;
 import com.spring.sisfact.app.entity.Cliente;
+import com.spring.sisfact.app.entity.Producto;
 
 @Service
 public class IClienteServiceImpl implements IClienteService {
 
 	@Autowired
 	//IClienteDao clienteDao;
-	IClienteDaoCrudRepository clienteDao;
+	IClienteDao clienteDao;
+	
+	@Autowired 
+	IProductoDao productoDao;
 	
 	@Override
 	@Transactional(readOnly=true)
@@ -50,5 +54,15 @@ public class IClienteServiceImpl implements IClienteService {
 	public Page<Cliente> findAllPaginate(Pageable pageable) {
 		return clienteDao.findAll(pageable);
 	}
+
+	@Override
+	public List<Producto> findByNombre(String term) {
+	
+		//return productoDao.findByNombre(term);
+		
+		//return productoDao.findByNombreLikeIgnoreCase("%"+ term + "%");
+		
+		return productoDao.findByNombreContainingIgnoreCase(term);
+	} 
 
 }

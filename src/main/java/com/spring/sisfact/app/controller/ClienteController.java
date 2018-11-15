@@ -26,7 +26,7 @@ public class ClienteController {
 	
 	
 	@Autowired
-	@Qualifier("clienteDaoJPA")//Para saber que clase implementa la interface le ponemos un nombre a @Repository("clienteDaoJPA")
+	//@Qualifier("clienteDaoJPA")//Para saber que clase implementa la interface le ponemos un nombre a @Repository("clienteDaoJPA")
 	private IClienteDao clienteDao;
 	
 	@Autowired
